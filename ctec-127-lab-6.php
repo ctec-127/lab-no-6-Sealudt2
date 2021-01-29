@@ -13,8 +13,39 @@
 
     <?php
     // function to calculate converted temperature
-    function convertTemp($temp, $unit1, $unit2)
-    {
+    function convertTemp($temp, $unit1, $unit2){  
+        if ($unit1 == 'celsius' && $unit2 == 'fahrenheit') {
+            $conversion = $temp * 9/5 + 32;
+            return $conversion;
+        }
+        elseif ($unit1 == 'celsius' && $unit2 == 'kelvin') {
+            $conversion = $temp + 273.15;
+            return $conversion;
+        }
+        elseif ($unit1 == 'fahrenheit' && $unit2 == 'celsius') {
+            $conversion = ($temp - 32) * 5/9;
+            return $conversion;
+        }
+        elseif ($unit1 == 'fahrenheit' && $unit2 == 'kelvin') {
+            $conversion = ($temp + 459.67)* 5/9;
+            return $conversion;
+        }
+        elseif ($unit1 == 'kelvin' && $unit2 == 'fahrenheit') {
+            $conversion = $temp * 9/5 - 459.67;
+            return $conversion;
+        }
+        elseif ($unit1 == 'kelvin' && $unit2 == 'celsius') {
+            $conversion = $temp - 273.15;
+            return $conversion;
+        }
+    
+    
+            
+        
+        
+    
+        
+        }
         // conversion formulas
         // Celsius to Fahrenheit = T(°C) × 9/5 + 32
         // Celsius to Kelvin = T(°C) + 273.15
@@ -25,7 +56,7 @@
 
         // You need to develop the logic to convert the temperature based on the selections and input made
 
-    } // end function
+     // end function
 
     // Logic to check for POST and grab data from $_POST
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -40,7 +71,6 @@
         $conversionUnit = $_POST['conversionunit'];
         $convertedTemp = convertTemp($originalTemperature, $originalUnit, $conversionUnit);
     } // end if
-
     ?>
     <!-- Form starts here -->
     <h1>Temperature Converter</h1>
@@ -63,7 +93,9 @@
 
         <div class="group">
             <label for="convertedtemp">Converted Temperature</label>
-            <input type="text" value="" name="convertedtemp" size="14" maxlength="7" id="convertedtemp" readonly>
+            <input type="text" value="<?php if ($_SERVER['REQUEST_METHOD'] == 'POST') { echo $convertedTemp; } ?>" name="convertedtemp" size="14" maxlength="7" id="convertedtemp" <?php if ($_SERVER['REQUEST_METHOD'] == 'GET') {echo "disabled";} ?>>
+
+        
 
             <select name="conversionunit">
                 <option value="--Select--">--Select--</option>
