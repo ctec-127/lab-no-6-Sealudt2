@@ -15,30 +15,30 @@
     // function to calculate converted temperature
     function convertTemp($temp, $unit1, $unit2){  
         if ($unit1 == 'celsius' && $unit2 == 'fahrenheit') {
-            $conversion = $temp * 9/5 + 32;
-            return $conversion;
+            $convertedTemp = $temp * 9/5 + 32;
+            
         }
         elseif ($unit1 == 'celsius' && $unit2 == 'kelvin') {
-            $conversion = $temp + 273.15;
-            return $conversion;
+            $convertedTemp = $temp + 273.15;
+            
         }
         elseif ($unit1 == 'fahrenheit' && $unit2 == 'celsius') {
-            $conversion = ($temp - 32) * 5/9;
-            return $conversion;
+            $convertedTemp = ($temp - 32) * 5/9;
+            ;
         }
         elseif ($unit1 == 'fahrenheit' && $unit2 == 'kelvin') {
-            $conversion = ($temp + 459.67)* 5/9;
-            return $conversion;
+            $convertedTemp = ($temp + 459.67)* 5/9;
+            
         }
         elseif ($unit1 == 'kelvin' && $unit2 == 'fahrenheit') {
-            $conversion = $temp * 9/5 - 459.67;
-            return $conversion;
+            $convertedTemp = $temp * 9/5 - 459.67;
+            
         }
         elseif ($unit1 == 'kelvin' && $unit2 == 'celsius') {
-            $conversion = $temp - 273.15;
-            return $conversion;
+            $convertedTemp = $temp - 273.15;
+            
         }
-    
+        return $convertedTemp;
     
             
         
